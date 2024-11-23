@@ -1,10 +1,10 @@
 {
-  "name": "i18n-light",
+  "name": "small-i18n",
   "private": false,
-  "description": "i18n-light is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
-  "version": "1.0.0",
+  "description": "i18n-super-light is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
+  "version": "1.0.1",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/i18n.type.d.ts",
   "author": {
     "email": "MasoudMotahari1380@gmail.com",
     "name": "Masoud Motahari",
@@ -23,5 +23,8 @@
     "rollup": "^4.27.3",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "~5.6.2"
+  },
+  "dependencies": {
+    "small-i18n": "^1.0.1"
   }
 }

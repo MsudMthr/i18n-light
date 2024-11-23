@@ -1,24 +1,30 @@
 import typescript from 'rollup-plugin-typescript2';
+import packageJson from './package.json';
 
 export default {
-    input: 'src/index.ts', // Entry file
+    input: 'src/index.ts',
     output: [
         {
-            file: 'dist/index.cjs.js', // CommonJS output
+            file: 'dist/index.cjs.js',
             format: 'cjs',
-            sourcemap: true, // Enable source maps
+            sourcemap: true,
+            exports: 'auto'
         },
         {
-            file: 'dist/index.esm.js', // ES module output
+            file: 'dist/index.esm.js',
             format: 'esm',
-            sourcemap: true, // Enable source maps
-        },
+            sourcemap: true
+        }
+    ],
+    external: [
+        ...Object.keys(packageJson.dependencies || {}),
     ],
     plugins: [
         typescript({
-            tsconfig: './tsconfig.json', // Path to tsconfig.json
-            sourcemap: true, // Enable source maps for TypeScript files
-            clean: true, // Clean output folder before writing new files
-        }),
+            tsconfig: './tsconfig.json',
+            sourcemap: true,
+            clean: true
+        })
     ],
+    preserveSymlinks: true
 };

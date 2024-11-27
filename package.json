@@ -6,13 +6,6 @@
   "main": "./dist/index.js",
   "module": "./dist/index.cjs",
   "types": "./dist/types/i18n.type.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.cjs",
-      "types": "./dist/types/i18n.type.d.ts"
-    }
-  },
   "author": {
     "email": "MasoudMotahari1380@gmail.com",
     "name": "Masoud Motahari",

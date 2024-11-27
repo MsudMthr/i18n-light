@@ -2,7 +2,7 @@
   "name": "small-i18n",
   "private": false,
   "description": "small-i18n is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "dist/types/i18n.type.d.ts",

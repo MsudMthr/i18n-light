@@ -1,10 +1,10 @@
 {
-  "name": "small-i18n",
+  "name": "@msudmthr/small-i18n",
   "private": false,
   "description": "small-i18n is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
   "version": "1.0.4",
-  "main": "./dist/index.js",
-  "module": "./dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.cjs",
   "types": "dist/types/i18n.type.d.ts",
   "author": {
     "email": "MasoudMotahari1380@gmail.com",
@@ -20,7 +20,7 @@
     "build": "tsup"
   },
   "devDependencies": {
-    "typescript": "~5.6.2",
-    "tsup": "^8.3.5"
+    "tsup": "^8.3.5",
+    "typescript": "~5.6.2"
   }
 }

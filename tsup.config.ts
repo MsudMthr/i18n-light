@@ -1,10 +1,13 @@
-import {defineConfig} from "tsup"
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-    format: ['esm', "cjs", "iife"],
-    entry: ['./src/index.ts'],
+    entry: ["./src/index.ts"],
+    format: ["cjs", "esm"],
     dts: true,
     shims: true,
-    skipNodeModulesBundle: true,
     clean: true,
-})
+    outDir: "dist",
+    target: "es2015",
+    skipNodeModulesBundle: true,
+    splitting: false,
+});

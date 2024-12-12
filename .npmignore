@@ -21,7 +21,9 @@ node_modules
 *.sln
 *.sw?
 
-
-/src/
+# Ignore TypeScript and build configuration files
 tsconfig.json
 tsup.config.ts
+
+# Ignore source files (if you don't want them published)
+src/

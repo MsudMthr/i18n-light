@@ -3,9 +3,9 @@
   "private": false,
   "description": "small-i18n is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
   "version": "1.0.7",
-  "main": "./dist/index.js",
-  "module": "./dist/index.cjs",
-  "types": "./dist/types/i18n.type.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": {
     "email": "MasoudMotahari1380@gmail.com",
     "name": "Masoud Motahari",
@@ -22,5 +22,8 @@
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "~5.6.2"
+  },
+  "dependencies": {
+    "small-i18n": "^1.0.7"
   }
 }

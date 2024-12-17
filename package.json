@@ -1,8 +1,8 @@
 {
-  "name": "small-i18n",
+  "name": "fast-i18n",
   "private": false,
-  "description": "small-i18n is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
-  "version": "1.0.8",
+  "description": "fast-i18n is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,8 +22,5 @@
   "devDependencies": {
     "tsup": "^8.3.5",
     "typescript": "~5.6.2"
-  },
-  "dependencies": {
-    "small-i18n": "^1.0.7"
   }
 }

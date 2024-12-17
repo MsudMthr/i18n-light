@@ -26,8 +26,6 @@ npm install small-i18n
 First, define the i18n configuration and provide translation messages for different locales.
 
 ```ts
-import { createI18n, I18n } from './i18n'; // Path to the file where the i18n library is saved.
-
 const i18nConfig = {
     locale: 'en', // Default locale
     messages: {
@@ -47,45 +45,22 @@ const i18nConfig = {
         }
     }
 };
-
-// Initialize the i18n system with your configuration.
-const i18n = createI18n(i18nConfig);
 ```
 
 ### Step 2: Install into Your App
 
-If you are using Vue.js or a similar framework that supports global properties, you can install the i18n instance.
+you can install the i18n instance.
 
 ```ts
-import { createApp } from 'vue';
-import App from './App.vue';  // Your root component
-import { createI18n } from './i18n'; // Path to your i18n library
-
-const app = createApp(App);
-app.use(createI18n(i18nConfig));  // Install i18n globally
-
-app.mount('#app');
+I18n.initialize(i18nConfig);
 ```
 
 ### Step 3: Using Translations in the App
 
 In your app, you can use the `$t` function to fetch translated strings and pass in any dynamic variables for replacements.
 
-```html
-<template>
-  <div>
-    <h1>{{ $t('greeting', { name: 'John' }) }}</h1> <!-- Displays 'Hello, John!' or 'Bonjour, John!' -->
-    <p>{{ $t('user.profile') }}</p> <!-- Displays 'User Profile' or 'Profil de l'utilisateur' -->
-  </div>
-</template>
-
-<script setup>
-  import { defineComponent } from 'vue';
-
-  export default defineComponent({
-    name: 'App',
-  });
-</script>
+```js
+I18n.t('greeting', { name: 'John' });
 ```
 
 In the above example:

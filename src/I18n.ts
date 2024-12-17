@@ -64,16 +64,4 @@ class I18n {
     }
 }
 
-function createI18n(config: I18nConfigTypes) {
-    I18n.initialize(config);
-
-    function install(app: any) {
-        app.config.globalProperties.$t = (key: string, variables: object) => I18n.t(key, variables)
-    }
-
-    return {
-        install
-    };
-}
-
-export {I18n, createI18n};
+export default I18n;

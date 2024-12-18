@@ -16,7 +16,7 @@ This library provides an easy-to-use internationalization (i18n) solution for Ja
 To install the i18n library, simply import it into your JavaScript project.
 
 ```bash
-npm install small-i18n
+npm install i18n-jet
 ```
 
 ## Usage

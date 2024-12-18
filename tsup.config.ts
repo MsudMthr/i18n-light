@@ -10,4 +10,5 @@ export default defineConfig({
     target: "es2015",
     skipNodeModulesBundle: true,
     splitting: false,
+    treeshake: false
 });

@@ -18,37 +18,33 @@ class I18n {
     static getValue(key: string): string | object {
         const path: string[] = key.split('.');
 
-        let value: string | object = this.messages;
-        let fallbackValue: string | object = this.fallbackMessages;
+        let value: string | object | undefined = this.messages;
 
         path.forEach((part) => {
-            if (!(value.hasOwnProperty(part))) {
-                value = key;
-                return
+            if (!(value && value.hasOwnProperty(part))) {
+                value = undefined;
+                return;
             }
 
             // @ts-ignore
             value = value[part];
         });
 
-        // @ts-ignore
         // Get the message from the fallback if it doesn't exist in the current locale's messages
-        if (value === key) {
-
+        if (value === undefined) {
+            value = this.fallbackMessages;
             path.forEach((part) => {
-                if (!(fallbackValue.hasOwnProperty(part))) {
-                    fallbackValue = key;
-                    return
+                if (!(value && value.hasOwnProperty(part))) {
+                    value = undefined;
+                    return;
                 }
 
                 // @ts-ignore
-                fallbackValue = fallbackValue[part];
+                value = value[part];
             });
-
-            return fallbackValue;
         }
 
-        return value;
+        return value !== undefined ? value : key;
     }
 
     static replaceVariables(value: string = '', variables: object | undefined) {

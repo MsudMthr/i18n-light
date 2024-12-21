@@ -2,7 +2,7 @@
   "name": "i18n-jet",
   "private": false,
   "description": "i18n-jet is a lightweight internationalization package that offers a simple and efficient way to manage translations in your project. It allows you to translate text using keys, without the additional overhead and complexity found in full-fledged i18n libraries.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",

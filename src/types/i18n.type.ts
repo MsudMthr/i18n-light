@@ -4,5 +4,6 @@ export type I18nMessagesType = {
 
 export type I18nConfigTypes = {
     locale: string;
+    fallbackLocale: string;
     messages: I18nMessagesType;
 };

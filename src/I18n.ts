@@ -1,90 +1,68 @@
-import {I18nConfigTypes} from "./types/i18n.type";
+import { I18nConfigTypes } from "./types/i18n.type";
+import {hasOwnProperty, isEmpty} from "./utils";
 
 class I18n {
-
     private static locale: string;
     private static messages: object;
-    private static fallbackLocale: string;
-    private static fallbackMessages: object;
     private static config: I18nConfigTypes;
 
     static initialize(config: I18nConfigTypes) {
         this.locale = config.locale;
-        this.fallbackLocale = config.fallbackLocale;
         this.config = config;
         this.initializeMessages(this.locale);
     }
 
-    static getValue(key: string): string | object {
-        const path: string[] = key.split('.');
-
-        let value: string | object | undefined = this.messages;
-
-        path.forEach((part) => {
-            if (!(value && value.hasOwnProperty(part))) {
-                value = undefined;
-                return;
-            }
-
-            // @ts-ignore
-            value = value[part];
-        });
-
-        // Get the message from the fallback if it doesn't exist in the current locale's messages
-        if (value === undefined) {
-            value = this.fallbackMessages;
-            path.forEach((part) => {
-                if (!(value && value.hasOwnProperty(part))) {
-                    value = undefined;
-                    return;
-                }
-
-                // @ts-ignore
-                value = value[part];
-            });
-        }
-
-        return value !== undefined ? value : key;
-    }
-
-    static replaceVariables(value: string = '', variables: object | undefined) {
+    static _replaceVariables(message: string, variables: Record<string, string>): string {
         const regex = /{(.*?)}/g;
 
-        return value.replace(regex, (match, key: string) => {
-            if (!variables) return '';
-
-            // @ts-ignore
-            return variables.hasOwnProperty(key) ? variables[key] : match;
+        return message.replace(regex, function (match, key) {
+            return hasOwnProperty(variables, key) ? variables[key] : match;
         });
     }
 
-    static t(key: string, variables?: undefined | object): string | object {
-        const value = this.getValue(key);
-        if (typeof value === "object") {
-            return key;
+    static translate(key: string, variables: Record<string, string> | null = null): string {
+        if (hasOwnProperty(this.messages, key)) {
+            let value = (this.messages as Record<string, string>)[key];
+
+            if (variables && !isEmpty(variables)) {
+                value = this._replaceVariables(value, variables);
+            }
+
+            return value;
         }
 
-        return this.replaceVariables(value, variables);
+        const path = key.split('.');
+        let value: unknown = this.messages;
+
+        for (const segment of path) {
+            if (!hasOwnProperty(value as object, segment)) {
+                return key;
+            }
+            value = (value as Record<string, unknown>)[segment];
+        }
+
+        if (typeof value !== "string") {
+            return key; // Ensure we return a string
+        }
+
+        if (variables && !isEmpty(variables)) {
+            value = this._replaceVariables(value, variables);
+        }
+
+        return <string>value;
     }
+
 
     private static initializeMessages(locale: string) {
         const data: object | (() => object) = this.config.messages[locale];
-        const fallbackData: object | (() => object) = this.config.messages[this.fallbackLocale];
 
-        if (typeof data === 'function') {
-            this.messages = data();
-        } else {
-            this.messages = data;
-        }
-
-        if (typeof fallbackData === 'function') {
-            this.fallbackMessages = fallbackData();
-        } else {
-            this.fallbackMessages = fallbackData;
-        }
+        this.messages =
+            typeof data === "function" ? data() : data;
     }
 
-
+    /**
+     * Returns the current locale.
+     */
     static get getLocale(): string {
         return this.locale;
     }
